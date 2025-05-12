@@ -21,7 +21,7 @@ const authenticateToken = async (authHeader?: string) => {
 };
 
 const getOidcRedirectUrl = async (userEmail: string) => {
-  const redirectUrl = process.env.DESCOPE_REDIRECT_URL || '';
+  const redirectUrl = process.env.DESCOPE_REDIRECT_URL || 'https://homegrown-auth-server.preview.descope.org/api/auth/callback';
   const projectId = process.env.DESCOPE_PROJECT_ID;
   const managementKey = process.env.DESCOPE_MANAGEMENT_KEY;
 
