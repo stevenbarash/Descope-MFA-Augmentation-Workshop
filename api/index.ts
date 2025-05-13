@@ -21,7 +21,7 @@ const authenticateToken = async (authHeader?: string) => {
 };
 
 const getOidcRedirectUrl = async (userEmail: string) => {
-  const redirectUrl = process.env.DESCOPE_REDIRECT_URL || 'http://localhost:3000' || 'https://homegrown-auth-server.preview.descope.org/api/auth/callback';
+  const redirectUrl = 'https://homegrown-auth-server.preview.descope.org/api/auth/callback';
   const projectId = process.env.DESCOPE_PROJECT_ID;
   const managementKey = process.env.DESCOPE_MANAGEMENT_KEY;
 
@@ -47,7 +47,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Login route
-    if (url === '/auth/login' && method === 'POST') {
+    if (url === '/api/auth/login' && method === 'POST') {
       const { email, password } = req.body;
       if (password !== 'password') {
         return res.status(401).json({ message: 'Invalid credentials' });
@@ -57,7 +57,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Callback route
-    if (url === '/auth/callback' && method === 'GET') {
+    if (url === '/api/auth/callback' && method === 'GET') {
       const { code, error } = req.query;
       if (error) return res.status(400).json({ message: `OAuth error: ${error}` });
       if (!code || typeof code !== 'string') return res.status(400).json({ message: 'No code provided' });
@@ -93,13 +93,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Get current user
-    if (url === '/auth/me' && method === 'GET') {
+    if (url === '/api/auth/me' && method === 'GET') {
       const user = await authenticateToken(req.headers.authorization);
       return res.json({ user: dummyUser });
     }
 
     // Protected route
-    if (url === '/protected' && method === 'GET') {
+    if (url === '/api/protected' && method === 'GET') {
       const user = await authenticateToken(req.headers.authorization);
       return res.json({ message: 'Protected route', user });
     }
