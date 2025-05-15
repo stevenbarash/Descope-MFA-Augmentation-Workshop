@@ -1,5 +1,5 @@
 // API Configuration
-const API_BASE_URL = process.env.FRONTEND_URL + "/api"; // Replace with your API base URL
+const API_BASE_URL = "https://homegrown-auth-server.preview.descope.org/api";
 
 // DOM Elements
 const loginForm = document.getElementById('login-form');
