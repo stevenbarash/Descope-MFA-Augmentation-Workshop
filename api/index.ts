@@ -77,7 +77,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         .setExpirationTime("1h")
         .sign(secret);
 
-      const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+      const frontendUrl = process.env.FRONTEND_URL;
 
       res.setHeader('Content-Type', 'text/html');
       return res.send(`
