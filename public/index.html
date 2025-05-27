@@ -8,8 +8,19 @@
             background-color: #f8f9fa;
             height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+        }
+        .title {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        .subtitle {
+            margin-bottom: 2rem;
+            color: #6c757d;
+            font-size: 1.25rem;
+            font-weight: normal;
         }
         .login-container {
             background: white;
@@ -25,11 +36,31 @@
         .btn {
             width: 100%;
         }
+        .card {
+            margin-bottom: 1.5rem;
+            border: none;
+            background-color: #f8f9fa;
+        }
+        .card-body {
+            padding: 1rem;
+        }
+        .card-text {
+            margin-bottom: 0;
+            color: #6c757d;
+        }
     </style>
 </head>
 <body>
+    <h1 class="title">Welcome</h1>
+    <h2 class="subtitle">Adding MFA to Homegrown Auth</h2>
     <div class="login-container">
-        <h2 class="text-center mb-4">Login</h2>
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">Demo Login Instructions:<br>
+                • Enter any email address<br>
+                • Use "password" as the password</p>
+            </div>
+        </div>
         <div id="login-form">
             <div class="mb-3">
                 <input type="email" class="form-control" id="email" placeholder="Email">
