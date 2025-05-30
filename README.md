@@ -49,4 +49,7 @@ npm run dev
 
 ## License
 
-MIT License 
+MIT License
+
+## Learn More
+Check out our [blog post](https://www.descope.com/blog/post/mfa-homegrown) for a detailed walkthrough of adding MFA to your homegrown auth system. 
