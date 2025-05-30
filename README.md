@@ -1,80 +1,52 @@
-# Homegrown Auth Server
+# Homegrown Auth with MFA
 
-A Node.js server with JWT authentication that can be deployed to Vercel serverless functions.
+A demonstration of implementing Multi-Factor Authentication (MFA) using Descope to your home-grown auth system.
 
-## Features
-
-- JWT-based authentication
-- Protected routes
-- CORS enabled
-- TypeScript support
-- Vercel serverless deployment ready
-
-## Getting Started
+## Quick Start
 
 ### Prerequisites
-
 - Node.js (v14 or higher)
 - npm or yarn
+- A [Descope](https://descope.com) account 
 
-### Installation
+### Setup
 
 1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+git clone https://github.com/descope-sample-apps/homegrown-auth-server.git
+```
 
-### Development
+2. Install dependencies
+```bash
+npm install
+```
 
-To run the server locally:
+3. Create `.env` file
+```env
+# Server Configuration
+PORT=3000
+NODE_ENV=development
 
+# JWT Configuration
+JWT_SECRET=your-super-secret-key-here
+
+# Frontend URL
+FRONTEND_URL=http://localhost:3000
+
+# Descope Configuration
+DESCOPE_PROJECT_ID=your-project-id
+DESCOPE_REDIRECT_URL=http://localhost:3000/api/auth/callback
+```
+
+5. Run the application
 ```bash
 npm run dev
 ```
 
-The server will start on `http://localhost:3000`
+### Demo Login
+- Email: any email address
+- Password: "password"
 
-### Available Endpoints
+## License
 
-- `POST /api/auth/login` - Login and get JWT token
-  - Body: `{ "username": "testuser", "password": "password" }`
-- `GET /api/auth/me` - Get current user info
-  - Requires Authorization header with JWT token
-- `GET /api/protected` - Example protected route
-  - Requires Authorization header with JWT token
-- `GET /api/health` - Health check endpoint
-
-### Deployment to Vercel
-
-1. Install Vercel CLI:
-   ```bash
-   npm i -g vercel
-   ```
-
-2. Deploy:
-   ```bash
-   vercel
-   ```
-
-## Environment Variables
-
-Create a `.env` file with the following variables:
-
-```
-JWT_SECRET=your_secret_key
-PORT=3000
-NODE_ENV=development
-```
-
-## Security Note
-
-This is a basic implementation for demonstration purposes. In a production environment, you should:
-
-- Use a secure JWT secret
-- Implement proper password hashing
-- Add rate limiting
-- Use HTTPS
-- Implement proper user management
-- Add input validation
-- Use environment variables for sensitive data 
+MIT License 
