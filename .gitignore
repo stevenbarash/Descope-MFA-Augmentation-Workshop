@@ -25,3 +25,4 @@ build/
 logs/
 *.log 
 *.md
+test-workshop.sh

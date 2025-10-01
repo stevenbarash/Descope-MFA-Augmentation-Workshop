@@ -40,7 +40,13 @@
  * Points to your homegrown auth server endpoints
  * TODO: Use environment variable instead of hardcoding for different environments
  */
-const API_BASE_URL = "https://homegrown-auth-server.preview.descope.org/api";
+const API_BASE_URL = window.location.origin + "/api";
+
+
+
+
+
+
 
 // ============================================================================
 // DOM ELEMENT REFERENCES
