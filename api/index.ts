@@ -121,12 +121,20 @@ const getOidcRedirectUrl = async (userEmail: string) => {
 
     console.log('Calling oauth.start with:', {
       provider: 'descope',
-      redirectUrl
+      redirectUrl,
+      loginHint: userEmail
     });
 
     // CRITICAL: Start the OAuth flow with Descope
     // This creates an authorization session and returns a URL for the user
-    const response = await descopeClient.oauth.start('Descope', redirectUrl);
+    // Pass loginHint as the 5th parameter to pre-fill the user's email
+    const response = await descopeClient.oauth.start(
+      'Descope',        // provider
+      redirectUrl,      // redirectUrl
+      undefined,        // loginOptions
+      undefined,        // token
+      userEmail         // loginHint - pre-fills email in Descope's UI
+    );
 
     console.log('OAuth start response:', {
       ok: response.ok,
@@ -142,9 +150,8 @@ const getOidcRedirectUrl = async (userEmail: string) => {
       throw new Error('No redirect URL in response');
     }
 
-    // Add login_hint to pre-fill the user's email in Descope's UI
-    // This creates a seamless UX where the user doesn't re-enter their email
-    return response.data.url + `&login_hint=${userEmail}`;
+    // Return the URL directly - loginHint is already included by the SDK
+    return response.data.url;
   } catch (error) {
     console.error('Error getting redirect URL:', error);
     if (error instanceof Error) {
